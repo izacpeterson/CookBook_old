@@ -1,26 +1,35 @@
 <template>
   <div>
-    <h2>My Recipes</h2>
-    <NuxtLink to="newrecipe"><button>New</button></NuxtLink>
-    <ul class="recipe">
-      <li v-for="recipe in recipes" v-bind:key="recipe.title">
-        <h3>{{ recipe.title }}</h3>
-        <p>{{ recipe.desc }}</p>
-        <h4>Ingredients</h4>
-        <ul>
-          <li v-for="ingredient in recipe.ingredients" v-bind:key="ingredient">
-            {{ ingredient }}
-          </li>
-        </ul>
-        <h4>Directions</h4>
-        <ol>
-          <li v-for="step in recipe.directions" v-bind:key="step">
-            {{ step }}
-          </li>
-        </ol>
-        <hr />
-      </li>
-    </ul>
+    <div v-if="user.email">
+      <h2>My Recipes</h2>
+      <NuxtLink to="newrecipe"><button class="fab">+</button></NuxtLink>
+      <ul class="recipe">
+        <li v-for="recipe in recipes" v-bind:key="recipe.title">
+          <h3>{{ recipe.title }}</h3>
+          <p>{{ recipe.desc }}</p>
+          <h4>Ingredients</h4>
+          <ul>
+            <li
+              v-for="ingredient in recipe.ingredients"
+              v-bind:key="ingredient"
+            >
+              {{ ingredient }}
+            </li>
+          </ul>
+          <h4>Directions</h4>
+          <ol>
+            <li v-for="step in recipe.directions" v-bind:key="step">
+              {{ step }}
+            </li>
+          </ol>
+          <hr />
+        </li>
+      </ul>
+    </div>
+    <div v-if="!user.email" class="loginview">
+      <h2>Welcome to the cookbook</h2>
+      <p>Click the Sign In button to get started</p>
+    </div>
   </div>
 </template>
 <script>
@@ -61,7 +70,11 @@ export default {
   created() {
     onAuthStateChanged(auth, (user) => {
       this.user = user;
-      this.getData();
+      if (!user) {
+        this.user = {};
+      } else {
+        this.getData();
+      }
     });
   },
   methods: {
@@ -91,5 +104,29 @@ ol {
 }
 li {
   margin: 0 20px;
+}
+.loginview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+.fab {
+  padding: 10px;
+  font-size: 40px;
+  border-radius: 500px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
