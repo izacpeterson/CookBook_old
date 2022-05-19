@@ -3,6 +3,7 @@
     <!-- <NuxtWelcome /> -->
     <header>
       <h1>Cook Book</h1>
+      <!-- <button>Logout</button> -->
     </header>
     <main>
       <NuxtPage></NuxtPage>
@@ -24,6 +25,8 @@ header {
   color: #eee;
   padding: 10px;
   box-shadow: 0 0 5px black;
+  display: flex;
+  justify-content: space-between;
 }
 button {
   font-size: 16px;

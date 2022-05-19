@@ -18,6 +18,7 @@
             {{ step }}
           </li>
         </ol>
+        <hr />
       </li>
     </ul>
   </div>
