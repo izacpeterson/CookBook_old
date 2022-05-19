@@ -1,0 +1,48 @@
+{
+  "node_modules/nuxt/dist/app/entry.mjs": {
+    "file": "entry-7896d1fb.mjs",
+    "src": "node_modules/nuxt/dist/app/entry.mjs",
+    "isEntry": true,
+    "dynamicImports": [
+      "pages/account.vue",
+      "pages/index.vue",
+      "pages/mycookbook.vue",
+      "pages/newrecipe.vue"
+    ],
+    "css": [
+      "entry.e48e7fb2.css"
+    ]
+  },
+  "pages/account.vue": {
+    "file": "account-0700ef85.mjs",
+    "src": "pages/account.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/index.vue": {
+    "file": "index-66a9e6d0.mjs",
+    "src": "pages/index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/mycookbook.vue": {
+    "file": "mycookbook-4b93a71e.mjs",
+    "src": "pages/mycookbook.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  },
+  "pages/newrecipe.vue": {
+    "file": "newrecipe-e6c6e52e.mjs",
+    "src": "pages/newrecipe.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.mjs"
+    ]
+  }
+}
