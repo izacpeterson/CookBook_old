@@ -3,28 +3,21 @@
     <div v-if="user.email">
       <h2>My Recipes</h2>
       <NuxtLink to="newrecipe"><button class="fab">+</button></NuxtLink>
-      <ul class="recipe">
-        <li v-for="recipe in recipes" v-bind:key="recipe.title">
-          <h3>{{ recipe.title }}</h3>
-          <p>{{ recipe.desc }}</p>
-          <h4>Ingredients</h4>
-          <ul>
-            <li
-              v-for="ingredient in recipe.ingredients"
-              v-bind:key="ingredient"
-            >
-              {{ ingredient }}
-            </li>
-          </ul>
-          <h4>Directions</h4>
-          <ol>
-            <li v-for="step in recipe.directions" v-bind:key="step">
-              {{ step }}
-            </li>
-          </ol>
-          <hr />
-        </li>
-      </ul>
+      <div
+        class="recipe"
+        v-for="(recipe, index) in recipes"
+        v-bind:key="recipe.title"
+      >
+        <h3 @click="toggle(index)">{{ recipe.title }}</h3>
+        <Recipe
+          v-if="recipe.visible"
+          v-bind:index="index"
+          v-bind:title="recipe.title"
+          v-bind:desc="recipe.desc"
+          v-bind:ingredients="recipe.ingredients"
+          v-bind:directions="recipe.directions"
+        ></Recipe>
+      </div>
     </div>
     <div v-if="!user.email" class="loginview">
       <h2>Welcome to the cookbook</h2>
@@ -90,21 +83,13 @@ export default {
         console.log("No such document!");
       }
     },
+    toggle(index) {
+      this.recipes[index].visible = !this.recipes[index].visible;
+    },
   },
 };
 </script>
 <style>
-.recipe {
-  padding: 20px;
-}
-ul,
-p,
-ol {
-  padding: 0 0 10px 0;
-}
-li {
-  margin: 0 20px;
-}
 .loginview {
   display: flex;
   flex-direction: column;
@@ -128,5 +113,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.recipe {
+  margin: 10px;
 }
 </style>
